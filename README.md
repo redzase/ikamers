@@ -11,13 +11,13 @@ $ bundle install
 **Update the database with new data model**:
 
 ```console
-$ rake db:migrate
+$ rails db:migrate
 ```
 
 **Feed the database with default seeds**:
 
 ```console
-$ rake db:seed
+$ rails db:seed
 ```
 
 **Start the web server on `http://localhost:3000` by default**:
