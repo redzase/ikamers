@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "f0e89f59-3fe6-4fcc-980f-d6ad339d888c",
+		"name": "Ikamers-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"redza\",\n    \"email\": \"mredzase@gmail.com\",\n    \"password\": 123456\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody)",
+							"pm.globals.set(\"token\", jsonData.data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"mredzase@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get products",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/products",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "asus",
+							"description": "searching by name product",
+							"disabled": true
+						},
+						{
+							"key": "merchant_id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"items\": [\n        {\n            \"variant_id\": 1,\n            \"quantity\": 10\n        },\n        {\n            \"variant_id\": 2,\n            \"quantity\": 2\n        },\n        {\n            \"variant_id\": 3,\n            \"quantity\": 3\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/carts",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get orders",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/orders",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pay",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/order/pay/:id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"order",
+						"pay",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,24 +1,51 @@
-# README
+# Ikamers API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Project Setup
 
-Things you may want to cover:
+**Install all gems**:
 
-* Ruby version
+```console
+$ bundle install
+```
 
-* System dependencies
+**Update the database with new data model**:
 
-* Configuration
+```console
+$ rake db:migrate
+```
 
-* Database creation
+**Feed the database with default seeds**:
 
-* Database initialization
+```console
+$ rake db:seed
+```
 
-* How to run the test suite
+**Start the web server on `http://localhost:3000` by default**:
 
-* Services (job queues, cache servers, search engines, etc.)
+```console
+$ rails server
+```
 
-* Deployment instructions
+## Usage
 
-* ...
+| HTTP verbs | Paths  | Used for |
+| ---------- | ------ | --------:|
+| POST | /register| Create a user|
+| POST | /login   | Authenticate a user |
+| GET | /products    | List all products|
+| POST | /carts | Create a cart order |
+| GET | /orders | List all orders |
+| PUT | /order/pay/:id | Update status order |
+
+**For details, you can see in postman collection**
+
+## Dependencies
+
+* Rails 6.1 [Rails Guide](http://guides.rubyonrails.org/v6.1/)
+* SQLite3
+* Bcrypt
+* JWT
+* Puma
+* Devise
+* Money-rails
+* Faker
